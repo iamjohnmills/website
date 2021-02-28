@@ -1,57 +1,92 @@
 <html>
+<head>
+  <title>Hello World!</title>
+  <script>
+    const write_last_modified = () => {
+      const last_modified = new Date(document.lastModified);
+      const year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(last_modified);
+      const month = new Intl.DateTimeFormat('en', { month: 'short' }).format(last_modified);
+      const day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(last_modified);
+      document.getElementById('last-modified').innerHTML = `Last modified: ${month} ${day}, ${year}`;
+    }
+    const init = async () => {
+      await write_last_modified();
+    }
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+  <style>
+    html { font-size: 16px }
+    p + ul, p + dl { margin-top: -0.5em }
+    #aboutme { display: flex; flex-direction: row; }
+    #aboutme:before { content: '\1D4BE'; margin: 0 12px 0 5px; flex: none; display: flex; align-items: center; font-size: 24px; height: 40px; width: 40px; border-radius: 50%; justify-content: center; color: #fff; background: #000 }
+  </style>
+</head>
 <body>
-
-<center>
+  <!--
+  My Perfect Job: A permanent software developer job at a downtown milwaukee company with a solid business model that isn’t remote, co-workers aren’t remote, pays well, has a great team that values my abilities, isn’t degrading, and doesn’t cause anger, depression or anxiety in any way, and does not demoralize or sabotage my personal life and professional success.
+  -->
   <h2>Welcome to my website</h2>
-</center>
-<hr/>
-<p>Get a permanent software developer job at a downtown milwaukee company with a solid business model that isn’t remote, co-workers aren’t remote, pays well, has a great team that values my abilities, isn’t degrading, and doesn’t cause anger, depression or anxiety in any way, and does not demoralize or sabotage my personal life and professional success.</p>
-<hr/>
-<p>I have many years of valuable professional expertise in front-end dev, ui/x, javascript es5/6, git, and am generally proficient in the modern landscape of full-stack development within a team environment. My extensive experience would be valuable in mentoring junior devs, distilling down complex ideas, and providing insight into project planning. Please take a look at my github and repl.it profiles for some examples of my coding skills. Thanks!</p>
-<hr/>
-
-<h2>Work History</h2>
-<p>I started my professional career designing and evnetually implementing <em>hundreds</em> of website designs for many university departments in an agency-style setting. I was an advocate for user-centered, css-based, content-first design approaches for new projects.
-<br/>MAY 2005 – JUN 2012</p>
-<p>I was promoted to a role with greater impact on University marketing and public relations efforts with interactive promotional content, targeted landing pages, branded wordpress themes, and google analytics implementations. I was an advocate for user-centered design, brand consistency on the web, and instrumental to inspiring a culture of web analytics across campus.
-<br/>JUL 2012 – OCT 2015</p>
-<p>After leaving UWM, and a bit of soul-searching, I worked with various Milwaukee-area companies on short-term web projects while also updating my technical skills as a Full Stack Developer specializing in JavaScript.
-<br/>NOV 2015 – MAR 2018</p>
-<hr/>
-
-<h2>Fun Facts</h2>
-<ul>
-<li>Can crush the #1 Captains of Crush</li>
-<li>Can solve the 3x3 cube expeditiously</li>
-<li>Can solve the 5x5 cube efficiently, but still working on the edge parity error</li>
-<li>I have over 250 legally recorded mp4 files in my movie collection</li>
-</ul>
-<hr/>
-
-<h2>Interesting Projects</h2>
-<p>Image Reader / 2020
-<br/>
-Javascript RSS feed parser with an interesting duplicate image comparison feature.
-</p>
-
-<p>Slime Volleyball / 2020
-<br/>
-Javascript clone of the popular 90s java applet game. I added online multiplayer and chat.
-</p>
-
-<p>Electron Movie Server / 2020
-<br/>
-A native mac app that indexes and serves mp4 files via a local node.js Rest API.
-</p>
-
-<p>Droptunes Web and iOS Apps / 2011
-<br/>Music player using the Dropbox API built with HTML5 and Appcelerator
-</p>
-
-<p>Cssremix.com / 2005-2010
-<br/>
-Regularly updated gallery showcase of current trends in web design reaching ~30K visitors / month
-</p>
-
+  <p>My name is John Mills. I&rsquo;m a front-end web developer working in Milwaukee since 2005. My professional career spans almost the entire web industry, from the early days of CSS-based designs to modern reactive javascript apps. I have many years of valuable professional expertise in front-end dev, UI/X, Javascript ES5/6, computational thinking, Git, and am generally proficient in the modern landscape of full-stack development within a team environment. My extensive experience would be valuable in mentoring junior devs, distilling down complex ideas, and providing insight into project planning. Please take a look at my <a href="https://github.com/iamjohnmills" target="_blank">github</a> and <a href="https://repl.it/@jpm23456" target="_blank">repl.it</a> profiles for examples of my coding abilities and interests.</p>
+  <p><b>Expertise</b>
+    <br/>Javascript, ES5/6/7, Vue.js, HTML, CSS, UI/X, Rest APIs, Git</p>
+  <p><b>Programming Ideals</b>
+    <br/>Fast Load Times, Minimal Aesthetic, Everything Modular, Pragmatic Plugin Usage, Readable Code</p>
+  <hr/>
+  <p><b>Professional Timeline</b></p>
+  <dl>
+    <dt>MAR 2018 &ndash; PRESENT</dt>
+    <dd><u>Vue.js Developer</u>
+      <br/>Allbridge
+      <br/>I currently build and maintain Vue apps that integrate with a custom Rest API to allow hotel and other property owners to managing and connecting to large-scale wifi networks. I am responsible for various aspects of the user expierience on the front-end, including the interface, form validation, error handling, routing, custom components, API requests, and more.
+    </dd>
+    <dt>NOV 2015 &ndash; MAR 2018</dt>
+    <dd><u>Full Stack Developer</u>
+      <br/>Milwaukee, WI
+      <br/>After leaving UWM, and a bit of soul-searching, I worked with various Milwaukee-area companies on short-term web projects while also updating my technical skills as a Full Stack Developer specializing in Javascript.
+    </dd>
+    <dt>JUL 2012 &ndash; OCT 2015</dt>
+    <dd><u>Web Strategist</u>
+      <br/>UW-Milwaukee
+      <br/>I was promoted to a role with greater impact on University marketing and public relations efforts, creating interactive promotional content, targeted landing pages, branded wordpress themes, and google analytics implementations. I was an advocate for user-centered design, brand consistency on the web, and instrumental to inspiring a culture of web analytics across campus.
+    </dd>
+    <dt>MAY 2005 &ndash; JUN 2012</dt>
+    <dd><u>Web Developer</u>
+      <br/>UW-Milwaukee
+      <br/>I started my professional career designing and implementing websites for many university departments in an agency-style setting. I was an advocate for user-centered, css-based, content-first design approaches for new projects.
+    </dd>
+    <dt>SEP 2000 &ndash; MAY 2005</dt>
+    <dd>Bachelor of Business Administration
+      <br/>Dual Major in Marketing &amp; Information Systems
+      <br/>UW-Milwaukee
+    </dd>
+  </dl>
+  <hr/>
+  <p><b>Interesting Projects</b></p>
+  <dl>
+    <dt>Repl.it Projects</dt>
+    <dd>I have a bunch of fun, mini code samples on repl.it that demonstrate a few ideas I know very well or that I find interesting. Check them out <a href="https://repl.it/@jpm23456" target="_blank">here</a>.</dd>
+    <dt>Image Reader</dt>
+    <dd>I made a Javascript RSS feed parser that I use daily to stay informed on topics of my interest. There is an interesting duplicate image comparison feature included that I came up with. Check it out <a href="https://iamjohnmills.github.io/imagereader/" target="_blank">here</a>.</dd>
+    <dt>Slime Volleyball</dt>
+    <dd>Javascript clone of the popular 90s java applet game. I added online multiplayer and chat. Play it <a href="https://slimevolleyballwithfriends.herokuapp.com/" target="_blank">here</a>.</dd>
+    <dt>Electron Movie Server</dt>
+    <dd>A native mac app that indexes and serves mp4 files via a local node.js Rest API. I am attempting to build a light-weight alternative to Plex.</dd>
+    <dt>Milwaukee Property Data Scraper</dt>
+    <dd>Node.js web scraper to fetch, parse, and normalize real-estate data on the milwaukee assessor&rsquo;s website.</dd>
+  </dl>
+  <hr/>
+  <p><b>Fun Facts</b></p>
+  <ul>
+    <li>I created and maintained Droptunes from 2011&ndash;15, an iOS app and companion web app which played music a user&rsquo;s music files via the Dropbox API.</li>
+    <li>I started and ran cssremix.com from 2005&ndash;10, a regularly updated gallery showcase of current trends in web design reaching &sim;30K visitors per month
+    <li>Captains of Crush #1</li>
+    <li>3&times;3 and 5&times;5 cubes</li>
+    <li>250+ recorded mp4 movie files</li>
+  </ul>
+  <hr />
+  <p id="aboutme">I currently live in downtown Milwaukee and enjoy spending time with family and friends, discovering new places to get cheap eats, savoring a cup of coffee, watching Star Trek re-runs, and overly organizing my recycling. When I&rsquo;m not eating light and lean, I return to my quest of finding the perfect slice of hawaiian pizza.</p>
+  <hr />
+  <p>linkedin.com/in/iamjohnmills &nbsp;&bull;&nbsp; github.com/iamjohnmills &nbsp;&bull;&nbsp; repl.it/@jpm23456 &nbsp;&bull;&nbsp; jpm23456@gmail.com</p>
+  <p><i id="last-modified"></i></p>
 </body>
 </html>
