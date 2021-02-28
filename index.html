@@ -27,7 +27,7 @@
             }
           }
         });
-        xhr.open('GET', 'https://hitcounter-jmills.herokuapp.com/');
+        xhr.open('GET', 'https://proxy-server-jmills.herokuapp.com/https://hitcounter-jmills.herokuapp.com/');
         xhr.send();
       } catch (e) {
         document.getElementById('hit-box').innerHTML = e.message;
