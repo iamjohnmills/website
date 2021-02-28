@@ -10,44 +10,35 @@
       const day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(last_modified);
       document.getElementById('last-modified').innerHTML = `Last modified: ${month} ${day}, ${year}`;
     }
-    const fetch_hits = () => {
-      return new Promise(function(resolve, reject) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = () => {
+    const write_hits = () => {
+      try {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = async () => {
 	        if(xhr.readyState !== 4) return;
           if(xhr.status >= 200 && xhr.status < 300 && xhr.responseText){
-            return resolve(xhr.responseText);
+            const hits = xhr.responseText.toString().split('');
+            while(hits.length < 10){
+              await hits.unshift('0');
+            }
+            for(var i in hits){
+              const char_el = document.createElement('span');
+              char_el.innerHTML = hits[i];
+              document.getElementById('hits').appendChild(char_el);
+              if(i == hits.length - 1){
+                document.getElementById('hit-box').classList.remove('hide');
+              }
+            }
           }
         }
         xhr.onerror = (e) => {
-          return reject(e);
+          throw e;
         }
         xhr.open('GET', 'https://hitcounter-jmills.herokuapp.com/');
         xhr.send();
-      });
-    }
-    const write_hits = async () => {
-      const hits_response = await fetch_hits();
-
-      const hits = hits_response.toString().split('');
-      while(hits.length < 10){
-        await hits.unshift('0');
+      } catch (e) {
+        document.getElementById('hit-box').innerHTML = e.message;
+        document.getElementById('hit-box').classList.remove('hide');
       }
-      for(var i in hits){
-        const char_el = document.createElement('span');
-        char_el.innerHTML = hits[i];
-        document.getElementById('hits').appendChild(char_el);
-        if(i == hits.length - 1){
-          document.getElementById('hit-box').classList.remove('hide');
-        }
-      }
-
-
-      /*
-      fetch_hits.then( async (response) => {
-      }).catch(error => {
-      })
-      */
     }
     const init = async () => {
       await write_last_modified();
