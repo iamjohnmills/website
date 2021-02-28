@@ -9,8 +9,37 @@
       const day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(last_modified);
       document.getElementById('last-modified').innerHTML = `Last modified: ${month} ${day}, ${year}`;
     }
+    const fetch_hits = new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+        if(xhr.status >= 200 && xhr.status < 300 && xhr.responseText){
+          resolve(xhr.responseText);
+        }
+      }
+      xhr.onerror = () => {
+        reject('error');
+      }
+      xhr.open('GET', 'https://hitcounter-jmills.herokuapp.com/');
+      xhr.send();
+    });
+    const write_hits = async () => {
+      fetch_hits.then( response => {
+        const hits = response.toString().split('');
+        while(hits.length < 10){
+          hits.unshift('0');
+        }
+        hits.forEach(char => {
+          const char_el = document.createElement('span');
+          char_el.innerHTML = char;
+          document.getElementById('hits').appendChild(char_el);
+        });
+        document.getElementById('hit-box').classList.remove('hide');
+      }).catch(error => {
+      })
+    }
     const init = async () => {
       await write_last_modified();
+      await write_hits();
     }
     document.addEventListener('DOMContentLoaded', init);
   </script>
@@ -18,13 +47,15 @@
     html { font-size: 16px }
     p + ul, p + dl { margin-top: -0.5em }
     #aboutme { display: flex; flex-direction: row; }
-    #aboutme:before { content: '\1D4BE'; margin: 0 12px 0 5px; flex: none; display: flex; align-items: center; font-size: 24px; height: 40px; width: 40px; border-radius: 50%; justify-content: center; color: #fff; background: #000 }
+    #aboutme:before { content: '\1D4BE'; margin: 0 12px 0 5px; flex: none; display: flex; align-items: center; font-size: 20px; height: 35px; width: 35px; border-radius: 50%; justify-content: center; color: #fff; background: #000 }
+    #hit-counter { display: inline-block; margin: 1em 0; text-align: center }
+    #hits { display: inline-block; margin-left: 5px; }
+    #hits span { display: inline-block; font-family: monospace; border-radius: 3px; background: #000; color: #fff; margin-right: 2px; padding: 2px 4px }
+    #hits span:last-child { margin: 0 }
+    .hide { display: none; }
   </style>
 </head>
 <body>
-  <!--
-  My Perfect Job: A permanent software developer job at a downtown milwaukee company with a solid business model that isn’t remote, co-workers aren’t remote, pays well, has a great team that values my abilities, isn’t degrading, and doesn’t cause anger, depression or anxiety in any way, and does not demoralize or sabotage my personal life and professional success.
-  -->
   <h2>Welcome to my website</h2>
   <p>My name is John Mills. I&rsquo;m a front-end web developer working in Milwaukee since 2005. My professional career spans almost the entire web industry, from the early days of CSS-based designs to modern reactive javascript apps. I have many years of valuable professional expertise in front-end dev, UI/X, Javascript ES5/6, computational thinking, Git, and am generally proficient in the modern landscape of full-stack development within a team environment. My extensive experience would be valuable in mentoring junior devs, distilling down complex ideas, and providing insight into project planning. Please take a look at my <a href="https://github.com/iamjohnmills" target="_blank">github</a> and <a href="https://repl.it/@jpm23456" target="_blank">repl.it</a> profiles for examples of my coding abilities and interests.</p>
   <p><b>Expertise</b>
@@ -86,7 +117,12 @@
   <hr />
   <p id="aboutme">I currently live in downtown Milwaukee and enjoy spending time with family and friends, discovering new places to get cheap eats, savoring a cup of coffee, watching Star Trek re-runs, and overly organizing my recycling. When I&rsquo;m not eating light and lean, I return to my quest of finding the perfect slice of hawaiian pizza.</p>
   <hr />
-  <p>linkedin.com/in/iamjohnmills &nbsp;&bull;&nbsp; github.com/iamjohnmills &nbsp;&bull;&nbsp; repl.it/@jpm23456 &nbsp;&bull;&nbsp; jpm23456@gmail.com</p>
+  <div id="hit-box" class="hide">
+    <div id="hit-counter">
+      You are visitor # <span id="hits"></span>
+    </div>
+    <hr/>
+  </div>
   <p><i id="last-modified"></i></p>
 </body>
 </html>
