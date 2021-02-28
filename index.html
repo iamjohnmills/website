@@ -17,14 +17,14 @@
           resolve(xhr.responseText);
         }
       }
-      xhr.onerror = () => {
-        reject('error');
+      xhr.onerror = (e) => {
+        reject(e);
       }
       xhr.open('GET', 'https://hitcounter-jmills.herokuapp.com/');
       xhr.send();
     });
-    const write_hits = async () => {
-      fetch_hits.then( response => {
+    const write_hits = () => {
+      fetch_hits.then( (response) => {
         const hits = response.toString().split('');
         while(hits.length < 10){
           hits.unshift('0');
@@ -36,6 +36,7 @@
         });
         document.getElementById('hit-box').classList.remove('hide');
       }).catch(error => {
+        document.getElementById('hit-box').innerHTML = error;
       })
     }
     const init = async () => {
