@@ -23,8 +23,8 @@
       xhr.open('GET', 'https://hitcounter-jmills.herokuapp.com/');
       xhr.send();
     });
-    const write_hits = async () => {
-      fetch_hits.then( (response) => {
+    const write_hits = () => {
+      fetch_hits.then( async (response) => {
         const hits = response.toString().split('');
         while(hits.length < 10){
           await hits.unshift('0');
