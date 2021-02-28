@@ -17,9 +17,9 @@
 	        if(xhr.readyState !== 4) return;
           if(xhr.status >= 200 && xhr.status < 300 && xhr.responseText){
             const hits = xhr.responseText.toString().split('');
-            while(hits.length < 10){
-              await hits.unshift('0');
-            }
+            //while(hits.length < 10){
+            //  await hits.unshift('0');
+            //}
             for(var i in hits){
               const char_el = document.createElement('span');
               char_el.innerHTML = hits[i];
