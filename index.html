@@ -10,20 +10,26 @@
       const day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(last_modified);
       document.getElementById('last-modified').innerHTML = `Last modified: ${month} ${day}, ${year}`;
     }
-    const fetch_hits = new Promise(function(resolve, reject) {
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = () => {
-        if(xhr.status >= 200 && xhr.status < 300 && xhr.responseText){
-          resolve(xhr.responseText);
+    const fetch_hits = () => {
+      return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+          if(xhr.status >= 200 && xhr.status < 300 && xhr.responseText){
+            resolve(xhr.responseText);
+          }
         }
-      }
-      xhr.onerror = (e) => {
-        reject(e);
-      }
-      xhr.open('GET', 'https://hitcounter-jmills.herokuapp.com/');
-      xhr.send();
-    });
-    const write_hits = () => {
+        xhr.onerror = (e) => {
+          reject(e);
+        }
+        xhr.open('GET', 'https://hitcounter-jmills.herokuapp.com/');
+        xhr.send();
+      });
+    }
+    const write_hits = async () => {
+      const hits_response = await fetch_hits();
+            document.getElementById('hit-box').classList.remove('hide');
+
+      /*
       fetch_hits.then( async (response) => {
         const hits = response.toString().split('');
         while(hits.length < 10){
@@ -39,6 +45,7 @@
         }
       }).catch(error => {
       })
+      */
     }
     const init = async () => {
       await write_last_modified();
