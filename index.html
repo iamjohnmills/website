@@ -13,29 +13,20 @@
     const write_hits = () => {
       try {
         const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = async () => {
-	        if(xhr.readyState !== 4) return;
-          if(xhr.status >= 200 && xhr.status < 300 && xhr.responseText){
-            document.getElementById('hit-box').innerHTML = xhr.responseText;
-            document.getElementById('hit-box').classList.remove('hide');
-            return;
-            const hits = xhr.responseText.split('');
-            while(hits.length < 10){
-              hits.unshift('0');
-            }
-            for(var i in hits){
-              const char_el = document.createElement('span');
-              char_el.innerHTML = hits[i];
-              document.getElementById('hits').appendChild(char_el);
-              if(i == hits.length - 1){
-                document.getElementById('hit-box').classList.remove('hide');
-              }
+        xhr.addEventListener("load", (event) => {
+          const hits = event.currentTarget.responseText.split('');
+          while(hits.length < 10){
+            hits.unshift('0');
+          }
+          for(var i in hits){
+            const char_el = document.createElement('span');
+            char_el.innerHTML = hits[i];
+            document.getElementById('hits').appendChild(char_el);
+            if(i == hits.length - 1){
+              document.getElementById('hit-box').classList.remove('hide');
             }
           }
-        }
-        xhr.onerror = (e) => {
-          throw e;
-        }
+        });
         xhr.open('GET', 'https://hitcounter-jmills.herokuapp.com/');
         xhr.send();
       } catch (e) {
