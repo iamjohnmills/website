@@ -49,12 +49,16 @@
     p + ul, p + dl { margin-top: -0.5em }
     #aboutme { display: flex; flex-direction: row; }
     #aboutme:before { content: '\1D4BE'; margin: 0 12px 0 5px; flex: none; display: flex; align-items: center; font-size: 20px; height: 35px; width: 35px; border-radius: 50%; justify-content: center; color: #fff; background: #000 }
-    #hit-counter { display: inline-block; margin: 1em 0 }
-    #hit-counter > span:first-child { display: inline-block; margin-right: 5px; padding: 5px 0 }
+    #hit-counter > span:first-child { display: block; padding: 0 0 10px 0 }
     #hits { display: inline-block }
     #hits span { display: inline-block; font-family: monospace; border-radius: 3px; background: #000; color: #fff; margin-right: 2px; padding: 2px 4px }
     #hits span:last-child { margin: 0 }
+    footer { text-align: center }
     .hide { display: none }
+    @media only screen and (min-width: 601px) {
+      #hit-counter > span:first-child { display: inline-block; margin-right: 5px; padding: 5px 0 }
+      footer { text-align: left }
+    }
   </style>
 </head>
 <body>
@@ -121,12 +125,14 @@
   <hr />
   <p id="aboutme">I currently live in downtown Milwaukee and enjoy spending time with family and friends, discovering new places to get cheap eats, savoring a cup of coffee, watching Star Trek re-runs, and overly organizing my recycling. When I&rsquo;m not eating light and lean, I return to my quest of finding the perfect slice of Hawaiian pizza.</p>
   <hr />
-  <div id="hit-box" class="hide">
-    <div id="hit-counter">
-      <span>You are visitor #</span><span id="hits"></span>
+  <footer>
+    <div id="hit-box" class="text-center hide">
+      <p id="hit-counter">
+        <span>You are visitor #</span><span id="hits"></span>
+      </p>
+      <hr/>
     </div>
-    <hr/>
-  </div>
-  <p><i id="last-modified"></i></p>
+    <p><i id="last-modified"></i></p>
+  </footer>
 </body>
 </html>
