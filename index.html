@@ -1,6 +1,7 @@
 <html>
 <head>
   <title>Hello World!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     const write_last_modified = () => {
       const last_modified = new Date(document.lastModified);
@@ -48,11 +49,12 @@
     p + ul, p + dl { margin-top: -0.5em }
     #aboutme { display: flex; flex-direction: row; }
     #aboutme:before { content: '\1D4BE'; margin: 0 12px 0 5px; flex: none; display: flex; align-items: center; font-size: 20px; height: 35px; width: 35px; border-radius: 50%; justify-content: center; color: #fff; background: #000 }
-    #hit-counter { display: inline-block; margin: 1em 0; text-align: center }
-    #hits { display: inline-block; margin-left: 5px; }
+    #hit-counter { display: inline-block; margin: 1em 0 }
+    #hit-counter > span:first-child { display: inline-block; margin-right: 5px; padding: 5px 0 }
+    #hits { display: inline-block }
     #hits span { display: inline-block; font-family: monospace; border-radius: 3px; background: #000; color: #fff; margin-right: 2px; padding: 2px 4px }
     #hits span:last-child { margin: 0 }
-    .hide { display: none; }
+    .hide { display: none }
   </style>
 </head>
 <body contenteditable="true" spellcheck="true">
@@ -62,6 +64,7 @@
     <br/>Javascript, ES5/6/7, Vue.js, HTML, CSS, UI/X, Rest APIs, Git</p>
   <p><b>Programming Ideals</b>
     <br/>Fast Load Times, Minimal Aesthetic, Everything Modular, Pragmatic Plugin Usage, Readable Code</p>
+
   <hr/>
   <p><b>Professional Timeline</b></p>
   <dl>
@@ -119,7 +122,7 @@
   <hr />
   <div id="hit-box" class="hide">
     <div id="hit-counter">
-      You are visitor # <span id="hits"></span>
+      <span>You are visitor #</span><span id="hits"></span>
     </div>
     <hr/>
   </div>
