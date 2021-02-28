@@ -23,11 +23,11 @@
       xhr.open('GET', 'https://hitcounter-jmills.herokuapp.com/');
       xhr.send();
     });
-    const write_hits = () => {
+    const write_hits = async () => {
       fetch_hits.then( (response) => {
         const hits = response.toString().split('');
         while(hits.length < 10){
-          hits.unshift('0');
+          await hits.unshift('0');
         }
         hits.forEach(char => {
           const char_el = document.createElement('span');
@@ -126,7 +126,7 @@
   <p id="aboutme">I currently live in downtown Milwaukee and enjoy spending time with family and friends, discovering new places to get cheap eats, savoring a cup of coffee, watching Star Trek re-runs, and overly organizing my recycling. When I&rsquo;m not eating light and lean, I return to my quest of finding the perfect slice of Hawaiian pizza.</p>
   <hr />
   <footer>
-    <div id="hit-box" class="text-center">
+    <div id="hit-box" class="text-center hide">
       <p id="hit-counter">
         <span>You are visitor #</span><span id="hits"></span>
       </p>
