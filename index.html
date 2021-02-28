@@ -15,8 +15,11 @@
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = async () => {
 	        if(xhr.readyState !== 4) return;
-          if(xhr.status >= 200 && xhr.status < 300){
-            const hits = xhr.responseText.toString().split('');
+          if(xhr.status >= 200 && xhr.status < 300 && xhr.responseText){
+            document.getElementById('hit-box').innerHTML = xhr.responseText;
+            document.getElementById('hit-box').classList.remove('hide');
+            return;
+            const hits = xhr.responseText.split('');
             while(hits.length < 10){
               hits.unshift('0');
             }
