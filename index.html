@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Hello World!</title>
+  <title>John Mills</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     const write_last_modified = () => {
@@ -10,29 +10,32 @@
       const day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(last_modified);
       document.getElementById('last-modified').innerHTML = `Last modified: ${month} ${day}, ${year}`;
     }
-    const write_hits = () => {
-      try {
+    const fetch_hits = () => {
+      return new Promise(function(resolve, reject) {
         const xhr = new XMLHttpRequest();
         xhr.addEventListener("load", (event) => {
-          if( !!isNaN(event.currentTarget.responseText) ) return;
-          const hits = event.currentTarget.responseText.split('');
-          while(hits.length < 10){
-            hits.unshift('0');
+          if( !!isNaN(event.currentTarget.responseText) ){
+            return resolve('0');
           }
-          for(var i in hits){
-            const char_el = document.createElement('span');
-            char_el.innerHTML = hits[i];
-            document.getElementById('hits').appendChild(char_el);
-            if(i == hits.length - 1){
-              document.getElementById('hit-box').classList.remove('hide');
-            }
-          }
+          return resolve(event.currentTarget.responseText);
         });
         xhr.open('GET', 'https://proxy-server-jmills.herokuapp.com/https://hitcounter-jmills.herokuapp.com/');
         xhr.send();
-      } catch (e) {
-        document.getElementById('hit-box').innerHTML = e.message;
-        document.getElementById('hit-box').classList.remove('hide');
+      });
+    }
+    const write_hits = async () => {
+      const hits_response = await fetch_hits();
+      const hits = hits_response.split('');
+      while(hits.length < 10){
+        hits.unshift('0');
+      }
+      for(var i in hits){
+        const char_el = document.createElement('span');
+        char_el.innerHTML = hits[i];
+        document.getElementById('hits').appendChild(char_el);
+        if(i == hits.length - 1){
+          document.getElementById('hit-box').classList.remove('hide');
+        }
       }
     }
     const init = async () => {
