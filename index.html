@@ -49,17 +49,18 @@
   </script>
   <style>
     html { font-size: 16px }
+    h2 { margin: 0.6em 0 0.5em }
     p + ul, p + dl { margin-top: -0.5em }
-    #aboutme { display: flex; flex-direction: row; }
+    a:link, a:visited, a:hover, a:active { color: #000; text-decoration: none; background: #fffc80 }
+    a:hover { border-bottom: 1px solid #000 }
+    #aboutme { display: flex; flex-direction: row }
     #aboutme:before { content: '\1D4BE'; margin: 0 12px 0 5px; flex: none; display: flex; align-items: center; font-size: 20px; height: 35px; width: 35px; border-radius: 50%; justify-content: center; color: #fff; background: #000 }
+    footer { text-align: center }
+    #hit-box.hide { display: none }
     #hit-counter > span:first-child { display: block; padding: 0 0 10px 0 }
     #hits { display: inline-block }
     #hits span { display: inline-block; font-family: monospace; border-radius: 3px; background: #000; color: #fff; margin-right: 2px; padding: 2px 4px }
     #hits span:last-child { margin: 0 }
-    footer { text-align: center }
-    .hide { display: none }
-    a:link, a:visited, a:hover, a:active { color: #000; text-decoration: none; background: #fffc80; }
-    a:hover { border-bottom: 1px solid #000; }
     @media only screen and (min-width: 601px) {
       #hit-counter > span:first-child { display: inline-block; margin-right: 5px; padding: 5px 0 }
       footer { text-align: left }
@@ -79,29 +80,34 @@
   <p><b>Professional Timeline</b></p>
   <dl>
     <dt>MAR 2018 &ndash; PRESENT</dt>
-    <dd><u>Vue.js Developer</u>
-      <br/>Allbridge
-      <br/>I currently build and maintain Vue apps that integrate with a custom Rest API to allow hotel and other property owners to managing and connecting to large-scale wifi networks. I am responsible for various aspects of the user experience on the front-end, including the interface, form validation, error handling, routing, custom components, API requests, and more.
+    <dd>
+      <u>Vue.js Developer</u><br/>
+      Allbridge<br/>
+      I currently build and maintain Vue apps that integrate with a custom Rest API to allow hotel and other property owners to managing and connecting to large-scale wifi networks. I am responsible for various aspects of the user experience on the front-end, including the interface, form validation, error handling, routing, custom components, API requests, and more.
     </dd>
     <dt>NOV 2015 &ndash; MAR 2018</dt>
-    <dd><u>Full Stack Developer</u>
-      <br/>Milwaukee, WI
-      <br/>After leaving UWM, and a bit of soul-searching, I worked with various Milwaukee-area companies on short-term web projects while also updating my technical skills as a Full Stack Developer specializing in Javascript.
+    <dd>
+      <u>Full Stack Developer</u><br/>
+      Milwaukee, WI<br/>
+      After leaving UWM, and a bit of soul-searching, I worked with various Milwaukee-area companies on short-term web projects while also updating my technical skills as a Full Stack Developer specializing in Javascript.
     </dd>
     <dt>JUL 2012 &ndash; OCT 2015</dt>
-    <dd><u>Web Strategist</u>
-      <br/>UW-Milwaukee
-      <br/>I was promoted to a role with greater impact on University marketing and public relations efforts, creating interactive promotional content, targeted landing pages, branded Wordpress themes, and Google Analytics implementations. I was an advocate for user-centered design, brand consistency on the web, and instrumental to inspiring a culture of web analytics across campus.
+    <dd>
+      <u>Web Strategist</u><br/>
+      UW-Milwaukee<br/>
+      I was promoted to a role with greater impact on University marketing and public relations efforts, creating interactive promotional content, targeted landing pages, branded Wordpress themes, and Google Analytics implementations. I was an advocate for user-centered design, brand consistency on the web, and instrumental to inspiring a culture of web analytics across campus.
     </dd>
     <dt>MAY 2005 &ndash; JUN 2012</dt>
-    <dd><u>Web Developer</u>
-      <br/>UW-Milwaukee
-      <br/>I started my professional career designing and implementing websites for many university departments in an agency-style setting. I was an advocate for user-centered, css-based, content-first design approaches for new projects.
+    <dd>
+      <u>Web Developer</u><br/>
+      UW-Milwaukee<br/>
+      I started my professional career designing and implementing websites for many university departments in an agency-style setting. I was an advocate for user-centered, css-based, content-first design approaches for new projects.
     </dd>
     <dt>SEP 2000 &ndash; MAY 2005</dt>
-    <dd>Bachelor of Business Administration
-      <br/>Dual Major in Marketing &amp; Information Systems
-      <br/>UW-Milwaukee
+    <dd>
+      Bachelor of Business Administration<br/>
+      Dual Major in Marketing &amp; Information Systems<br/>
+      UW-Milwaukee
     </dd>
   </dl>
   <hr/>
