@@ -41,9 +41,9 @@
         }
       }
     }
-    const init = async () => {
-      await write_hits();
-      await write_last_modified();
+    const init = () => {
+      write_hits();
+      write_last_modified();
     }
     document.addEventListener('DOMContentLoaded', init);
   </script>
