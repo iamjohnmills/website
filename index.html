@@ -13,12 +13,15 @@
     const fetch_hits = () => {
       return new Promise(function(resolve, reject) {
         const xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", (event) => {
+        xhr.addEventListener('load', (event) => {
           if( !!isNaN(event.currentTarget.responseText) ){
             return resolve('0');
           }
           return resolve(event.currentTarget.responseText);
         });
+        xhr.addEventListener('error', () => {
+          return resolve('0');
+        }
         xhr.open('GET', 'https://proxy-server-jmills.herokuapp.com/https://hitcounter-jmills.herokuapp.com/');
         xhr.send();
       });
