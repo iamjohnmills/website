@@ -21,7 +21,7 @@
         });
         xhr.addEventListener('error', () => {
           return resolve('0');
-        }
+        });
         xhr.open('GET', 'https://proxy-server-jmills.herokuapp.com/https://hitcounter-jmills.herokuapp.com/');
         xhr.send();
       });
